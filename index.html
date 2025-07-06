@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1 Bulan Kita</title>
+  <meta name="description" content="Surat anniversary 1 bulan yang manis dan romantis untuk kekasih." />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background: #222;
+      position: relative;
+      color: white;
+    }
+
+    /* Efek hati melayang */
+    .hearts {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: visible;
+      z-index: 0;
+      user-select: none;
+    }
+    .heart {
+      position: absolute;
+      color: #ff385c;
+      font-size: 20px;
+      opacity: 0.8;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.8s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    .slide.active {
+      left: 0;
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+
+    .slide h1,
+    .slide .indicator,
+    .slide .next-btn {
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+    }
+    .slide.active h1 {
+      animation-name: fadeIn;
+      animation-delay: 0.2s;
+    }
+    .slide.active .indicator {
+      animation-name: fadeIn;
+      animation-delay: 0.8s;
+    }
+    .slide.active .next-btn {
+      animation-name: fadeIn;
+      animation-delay: 1.1s;
+    }
+
+    /* text-box untuk paragraf dengan background transparan */
+    .text-box {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px 25px;
+      border-radius: 15px;
+      max-width: 700px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      text-align: justify;
+    }
+    .slide.active .text-box {
+      animation-name: fadeIn;
+      animation-delay: 0.5s;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      max-width: 800px;
+      text-transform: lowercase;
+    }
+
+    .text-box h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #ffd1dc;
+      text-transform: lowercase;
+    }
+
+    .bottom-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px; /* diubah supaya tombol dan indikator naik */
+    }
+
+    .indicator {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 1em;
+      backdrop-filter: blur(5px);
+      text-shadow: 1px 1px 2px black;
+      user-select: none;
+      position: relative;
+      margin-bottom: 0; /* hilangkan margin bawah agar indikator rapat ke tombol */
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .next-btn {
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid white;
+      color: white;
+      padding: 14px 32px;
+      font-size: 1.1em;
+      border-radius: 35px;
+      cursor: pointer;
+      backdrop-filter: blur(7px);
+      text-shadow: 1px 1px 3px black;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      min-width: 180px;
+      margin: 0; /* hilangkan margin default */
+    }
+    .next-btn:hover {
+      background-color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* Background Foto (Ganti URL dengan fotomu) */
+    .bg1 { background-image: url('https://i.ibb.co/3fXb9sX/bg1.jpg'); }
+    .bg2 { background-image: url('https://i.ibb.co/SNYvjT8/bg2.jpg'); }
+    .bg3 { background-image: url('https://i.ibb.co/Z1xvZ9Y/bg3.jpg'); }
+    .bg4 { background-image: url('https://i.ibb.co/h8gMPgW/bg4.jpg'); }
+    .bg5 { background-image: url('https://i.ibb.co/mcMKZYx/bg5.jpg'); }
+
+    @media (max-width: 600px) {
+      .slide h1 {
+        font-size: 1.7em;
+      }
+
+      .text-box {
+        max-width: 90vw;
+        padding: 15px 20px;
+        font-size: 1em;
+        margin-bottom: 30px;
+      }
+
+      .indicator {
+        font-size: 0.9em;
+        min-width: 120px;
+        padding: 8px 18px;
+      }
+
+      .next-btn {
+        padding: 12px 26px;
+        font-size: 1em;
+        min-width: 140px;
+      }
+
+      .bottom-controls {
+        max-width: 320px;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Efek hati melayang -->
+  <div class="hearts"></div>
+
+  <div class="slide bg1 active">
+    <h1>hari ini genap sebulan 💖</h1>
+    <div class="text-box">
+      <h2>tentang waktu kita</h2>
+      <p>nggak nyangka ya, udah sebulan aja kita barengan. rasanya kayak baru kemarin kita mulai kenal, ngobrol santai, dan ketawa bareng. waktu memang cepet banget kalau sama kamu.</p>
+      <p>selama sebulan ini, banyak hal yang mass rasain dan pelajarin dari kamu. ada saat seneng, ada juga yang bikin mass mikir, tapi semuanya jadi cerita yang berarti.</p>
+      <p>mass bener-bener bersyukur karena kamu mau nemenin mass, walaupun mass kadang masih banyak salah dan kurang peka. sebulan ini jadi bukti kecil kalau kita bisa jalan bareng.</p>
+      <p>mass berharap, hubungan kita bisa terus tumbuh dan makin kuat, bukan cuma sampai sebulan tapi sampai kapan pun.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 1 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg2">
+    <h1>tentang kamu 🌷</h1>
+    <div class="text-box">
+      <h2>kenapa kamu spesial</h2>
+      <p>mass suka banget sama cara kamu ngomong yang santai tapi selalu bikin mass nyaman. kamu bisa bikin mass ketawa cuma dari hal-hal kecil yang kamu lakuin.</p>
+      <p>gaya kamu itu unik, beda dari orang lain yang pernah mass kenal. itu bikin mass ngerasa spesial dan pengen terus deket sama kamu.</p>
+      <p>mass suka juga kamu selalu perhatian walaupun kadang cuma lewat chat singkat. itu bikin mass ngerasa dihargain dan nggak sendirian.</p>
+      <p>jadi, kamu penting banget buat mass, dan mass pengen terus jaga hubungan ini sebaik mungkin.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 2 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg3">
+    <h1>mass dan semua kekurangannya 😔</h1>
+    <div class="text-box">
+      <h2>pengakuan jujur</h2>
+      <p>mass tau, mass nggak sempurna. kadang mass masih suka cuek, atau jawab chat kamu dengan singkat banget. kadang juga mass pelupa dan nggak peka sama perasaan kamu.</p>
+      <p>mass minta maaf kalau selama ini bikin kamu kesel atau sedih tanpa sengaja. itu bukan maksud mass, cuma mass masih belajar buat jadi lebih baik.</p>
+      <p>mass janji akan berusaha lebih sabar dan perhatian ke kamu. mass pengen kita bisa saling support dan ngerti satu sama lain.</p>
+      <p>semua kekurangan mass itu nggak bakal bikin mass berhenti sayang sama kamu. justru mass pengen jadi lebih baik karena kamu.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 3 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg4">
+    <h1>harapan ke depan ✨</h1>
+    <div class="text-box">
+      <h2>masa depan bareng kamu</h2>
+      <p>mass pengen hubungan kita terus berjalan lancar dan makin seru. nggak cuma sebulan ini, tapi sampai setahun, dua tahun, bahkan lebih.</p>
+      <p>mass pengen tau lebih dalam soal kamu, mulai dari mimpi, kebiasaan, sampai hal-hal kecil yang bikin kamu seneng. mass pengen jadi tempat kamu curhat dan berbagi apa pun.</p>
+      <p>mass juga pengen kita bisa terus belajar dari masalah yang ada, supaya hubungan kita makin kuat dan nggak gampang goyah.</p>
+      <p>yang paling penting, mass pengen kita selalu saling percaya dan jujur, supaya masa depan kita cerah bareng-bareng.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 4 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg5">
+    <h1>makasih ya ❤️</h1>
+    <div class="text-box">
+      <h2>terima kasih dari hati</h2>
+      <p>makasih udah sabar sama mass, walaupun mass kadang bikin kamu kesel. makasih juga udah sayang dan ngertiin mass apa adanya.</p>
+      <p>makasih udah jadi teman cerita yang asik, yang bisa diajak ketawa, dan juga yang bisa dengerin saat mass butuh.</p>
+      <p>mass bener-bener merasa beruntung punya kamu sekarang. kehadiran kamu bikin hidup mass lebih berwarna dan berarti.</p>
+      <p>mass pengen terus jaga dan hargai kamu, karena kamu adalah salah satu hal terbaik yang mass punya.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 5 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg1">
+    <h1>penutup dari mass 🤍</h1>
+    <div class="text-box">
+      <h2>janji sederhana</h2>
+      <p>semoga sebulan ini jadi awal dari perjalanan panjang kita yang penuh cerita dan kebahagiaan.</p>
+      <p>mass janji bakal terus berusaha jadi pasangan yang lebih baik, yang bisa bikin kamu bahagia setiap hari.</p>
+      <p>mass nggak pengen bikin kamu nyesel udah pilih mass, dan mass pengen terus ada buat kamu kapan pun kamu butuh.</p>
+      <p>terima kasih sudah jadi bagian dari hidup mass, dan semoga kita bisa terus bareng sampai kapan pun.</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 6 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Lanjut</button>
+    </div>
+  </div>
+
+  <div class="slide bg2">
+    <h1>kita hebat banget! 💑</h1>
+    <div class="text-box">
+      <h2>semangat untuk hari-hari selanjutnya</h2>
+      <p>walaupun baru sebulan, mass ngerasa kita itu tim yang keren. semoga kamu tetep betah sama mass ya! 😚</p>
+    </div>
+    <div class="bottom-controls">
+      <div class="indicator">Halaman 7 dari 7</div>
+      <button class="next-btn" onclick="nextSlide()">Ulang dari Awal</button>
+    </div>
+  </div>
+
+  <script>
+    // Hati melayang acak
+    const heartsContainer = document.querySelector('.hearts');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (12 + Math.random() * 18) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 8) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.textContent = '❤️';
+      heartsContainer.appendChild(heart);
+
+      // Hapus hati setelah animasi selesai (14s safety)
+      setTimeout(() => {
+        heart.remove();
+      }, 14000);
+    }
+
+    // Buat hati terus menerus tiap 300ms
+    setInterval(createHeart, 300);
+
+    // Logika slide
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function nextSlide() {
+      slides[current].classList.remove('active');
+      current++;
+      if (current >= slides.length) current = 0;
+      slides[current].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
